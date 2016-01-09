@@ -37,9 +37,7 @@ Commands.extend("trail", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("Escape");
     this.key("?");
-    for (var i = 0; i < input.value.length; i++) {
-      this.key(input.value[i]);
-    }
+    this.string(input.value);
     this.key("Return");
     this.stop();
   }
@@ -49,9 +47,7 @@ Commands.extend("crew", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("Escape");
     this.key("/");
-    for (var i = 0; i < input.value.length; i++) {
-      this.key(input.value[i]);
-    }
+    this.string(input.value);
     this.key("Return");
     this.stop();
   }
@@ -61,9 +57,7 @@ Commands.extend("seltrail", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("O");
     this.key("?");
-    for (var i = 0; i < input.value.length; i++) {
-      this.key(input.value[i]);
-    }
+    this.string(input.value);
     this.key("Return");
     this.stop();
   }
@@ -72,9 +66,7 @@ Commands.extend("seltrail", function(input) {
 Commands.extend("selcrew", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("/");
-    for (var i = 0; i < input.value.length; i++) {
-      this.key(input.value[i]);
-    }
+    the.string(input.value);
     this.key("/");
     this.key("E");
     this.key("Return");
