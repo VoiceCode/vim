@@ -1,5 +1,13 @@
+function terminalActive(currentApplication) {
+  if (currentApplication === "iTerm" || currentApplication === "Terminal") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function vimActive(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal" && mode.lastIndexOf('vim', 0) === 0) {
+  if (terminalActive(currentApplication) && mode[0].lastIndexOf('vim', 0) === 0 || mode.lastIndexOf('vim', 0) === 0) {
     return true;
   } else {
     return false;
@@ -7,7 +15,7 @@ function vimActive(currentApplication, mode) {
 }
 
 function vimActiveNormalMode(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal "&& mode === "vim-normal") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-normal" || mode === "vim-normal") {
     return true;
   } else {
     return false;
@@ -15,7 +23,7 @@ function vimActiveNormalMode(currentApplication, mode) {
 }
 
 function vimActiveInsertMode(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal" && mode === "vim-insert") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-insert" || mode === "vim-insert") {
     return true;
   } else {
     return false;
@@ -181,6 +189,44 @@ Commands.extend("snipple", function() {
   if (vimActiveNormalMode(this.currentApplication(), Commands.mode)) {
     this.key("I");
     this.key("Delete", "Command");
+    this.stop();
+  }
+});
+
+Commands.extend("wordpreev", function(input) {
+  /*
+   * The reverse search (?) can take a count which would simplify the commands.
+   * However, this will not work in cases where the backward search command has been
+   * monkey patched to provide additional functionality. The implementation below
+   * should work even under such edge cases.
+   */
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    if (vimActiveInsertMode(this.currentApplication(),Commands.mode)) { this.key("Escape"); }
+    this.string("?[a-zA-Z0-9_]\\+");
+    this.key("Return");
+    if (input) { for (i=0; i<input-1; i++) { this.key("N"); } }
+    this.string(":nohl");
+    this.key("Return");
+    this.string("viw");
+    this.stop();
+  }
+});
+
+Commands.extend("wordneck", function(input) {
+  /*
+   * The forward search (/) can take a count which would simplify the commands.
+   * However, this will not work in cases where the forward search command has been
+   * monkey patched to provide additional functionality. The implementation below
+   * should work even under such edge cases.
+   */
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    if (vimActiveInsertMode(this.currentApplication(),Commands.mode)) { this.key("Escape"); }
+    this.string("/[a-zA-Z0-9_]\\+");
+    this.key("Return");
+    if (input) { for (i=0; i<input-1; i++) { this.key("N"); } }
+    this.string(":nohl");
+    this.key("Return");
+    this.string("viw");
     this.stop();
   }
 });
