@@ -7,7 +7,7 @@ function terminalActive(currentApplication) {
 }
 
 function vimActive(currentApplication, mode) {
-  if (terminalActive(currentApplication) && mode[0].lastIndexOf('vim', 0) === 0) {
+  if (terminalActive(currentApplication) && mode[0].lastIndexOf('vim', 0) === 0 || mode.lastIndexOf('vim', 0) === 0) {
     return true;
   } else {
     return false;
@@ -15,7 +15,7 @@ function vimActive(currentApplication, mode) {
 }
 
 function vimActiveNormalMode(currentApplication, mode) {
-  if (terminalActive(currentApplication) && mode[0] === "vim-normal") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-normal" || mode === "vim-normal") {
     return true;
   } else {
     return false;
@@ -23,7 +23,7 @@ function vimActiveNormalMode(currentApplication, mode) {
 }
 
 function vimActiveInsertMode(currentApplication, mode) {
-  if (terminalActive(currentApplication) && mode[0] === "vim-insert") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-insert" || mode === "vim-insert") {
     return true;
   } else {
     return false;
