@@ -192,3 +192,41 @@ Commands.extend("snipple", function() {
     this.stop();
   }
 });
+
+Commands.extend("wordpreev", function(input) {
+  /*
+   * The reverse search (?) can take a count which would simplify the commands.
+   * However, this will not work in cases where the backward search command has been
+   * monkey patched to provide additional functionality. The implementation below
+   * should work even under such edge cases.
+   */
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    if (vimActiveInsertMode(this.currentApplication(),Commands.mode)) { this.key("Escape"); }
+    this.string("?[a-zA-Z0-9_]\\+");
+    this.key("Return");
+    if (input) { for (i=0; i<input-1; i++) { this.key("N"); } }
+    this.string(":nohl");
+    this.key("Return");
+    this.string("viw");
+    this.stop();
+  }
+});
+
+Commands.extend("wordneck", function(input) {
+  /*
+   * The forward search (/) can take a count which would simplify the commands.
+   * However, this will not work in cases where the forward search command has been
+   * monkey patched to provide additional functionality. The implementation below
+   * should work even under such edge cases.
+   */
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    if (vimActiveInsertMode(this.currentApplication(),Commands.mode)) { this.key("Escape"); }
+    this.string("/[a-zA-Z0-9_]\\+");
+    this.key("Return");
+    if (input) { for (i=0; i<input-1; i++) { this.key("N"); } }
+    this.string(":nohl");
+    this.key("Return");
+    this.string("viw");
+    this.stop();
+  }
+});
