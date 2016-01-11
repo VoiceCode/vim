@@ -10,6 +10,8 @@ In order to use this package you must install the
 [Vim-VoiceCode](https://github.com/VoiceCode/vim-voicecode) plug-in which
 allows Vim to communicate it's current mode to VoiceCode.
 
+Also ensure you have activated the `set mode` VoiceCode command.
+
 ## Installation
 
 Simply clone this repository to your `~/voicecode/commando/user/` directory.
