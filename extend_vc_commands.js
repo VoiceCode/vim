@@ -66,7 +66,7 @@ Commands.extend("seltrail", function(input) {
 Commands.extend("selcrew", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("/");
-    the.string(input.value);
+    this.string(input.value);
     this.key("/");
     this.key("E");
     this.key("Return");
