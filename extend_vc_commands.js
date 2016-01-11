@@ -1,5 +1,13 @@
+function terminalActive(currentApplication) {
+  if (currentApplication === "iTerm" || currentApplication === "Terminal") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function vimActive(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal" && mode[0].lastIndexOf('vim', 0) === 0) {
+  if (terminalActive(currentApplication) && mode[0].lastIndexOf('vim', 0) === 0) {
     return true;
   } else {
     return false;
@@ -7,7 +15,7 @@ function vimActive(currentApplication, mode) {
 }
 
 function vimActiveNormalMode(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal "&& mode[0] === "vim-normal") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-normal") {
     return true;
   } else {
     return false;
@@ -15,7 +23,7 @@ function vimActiveNormalMode(currentApplication, mode) {
 }
 
 function vimActiveInsertMode(currentApplication, mode) {
-  if (currentApplication === "iTerm" || currentApplication === "Terminal" && mode[0] === "vim-insert") {
+  if (terminalActive(currentApplication) && mode[0] === "vim-insert") {
     return true;
   } else {
     return false;
