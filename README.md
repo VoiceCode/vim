@@ -37,6 +37,9 @@ Simply clone this repository to your `~/voicecode/commando/user/` directory.
   - jeepway
   - shackle
   - snipple
+  - snipper
+  - jolt
+  - derek
   - wordneck
   - wordpreev
 

@@ -193,6 +193,35 @@ Commands.extend("snipple", function() {
   }
 });
 
+Commands.extend("snipper", function() {
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    if (vimActiveInsertMode(this.currentApplication(), Commands.mode)) {
+      this.key("Escape");
+      this.key("L");
+    }
+    this.key("D", "Shift");
+    this.key("A", "Shift");
+    this.stop();
+  }
+});
+
+Commands.extend("jolt", function() {
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    this.key("Escape");
+    this.string("yyp");
+    this.stop();
+  }
+});
+
+Commands.extend("derek", function() {
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    this.key("Escape");
+    this.key("A", "Shift");
+    this.key("Space");
+    this.stop();
+  }
+});
+
 Commands.extend("wordpreev", function(input) {
   /*
    * The reverse search (?) can take a count which would simplify the commands.
