@@ -1,4 +1,4 @@
-# VoiceVode-Vim
+# VoiceCode-Vim
 
 VoiceCode command package for the Vim editor. This repository provides
 extensions for the default VoiceCode commands that allow them to work in
