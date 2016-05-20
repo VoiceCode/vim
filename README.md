@@ -42,6 +42,8 @@ Simply clone this repository to your `~/voicecode/commando/user/` directory.
   - derek
   - wordneck
   - wordpreev
+  - trough
+  - snipline
 
 ## Additional Commands
 

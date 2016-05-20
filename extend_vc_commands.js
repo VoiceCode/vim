@@ -41,6 +41,16 @@ Commands.extend("sage", function() {
   }
 });
 
+Commands.extend("trough", function(input) {
+  if (vimActiveNormalMode(this.currentApplication(), Commands.mode)) {
+    this.key("i");
+  }
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    this.key("w", "Control");
+    this.stop();
+  }
+})
+
 Commands.extend("trail", function(input) {
   if (vimActive(this.currentApplication(), Commands.mode)) {
     this.key("Escape");
@@ -218,6 +228,15 @@ Commands.extend("derek", function() {
     this.key("Escape");
     this.key("A", "Shift");
     this.key("Space");
+    this.stop();
+  }
+});
+
+Commands.extend("snipline", function() {
+  if (vimActive(this.currentApplication(), Commands.mode)) {
+    this.key("Escape");
+    this.key("D");
+    this.key("D");
     this.stop();
   }
 });
